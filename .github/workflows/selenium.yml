@@ -7,11 +7,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
+
       - name: Install dependencies
         run: pip install -r requirements.txt
+
+      - name: Start Flask app
+        run: |
+          nohup python app/app.py > flask.log 2>&1 &
+          sleep 5   # give it time to start
+
       - name: Run Selenium tests
-        run: pytest selenium-tests/
+        run: pytest selenium-tests/ -v
