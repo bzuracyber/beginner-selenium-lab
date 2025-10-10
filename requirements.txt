@@ -1,4 +1,9 @@
-flask
-selenium
 pytest
+selenium
 chromedriver-binary
+pytest
+selenium
+chromedriver-binary
+pytest-xdist
+pytest-html
+faker
