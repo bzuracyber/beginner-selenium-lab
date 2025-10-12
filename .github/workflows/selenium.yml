@@ -29,7 +29,7 @@ jobs:
           SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
 
     env:
-      SELENIUM_URL: http://selenium-hub:4444/wd/hub
+      SELENIUM_URL: http://localhost:4444/wd/hub
       JUICE_URL: http://localhost:3000
 
     steps:
@@ -45,21 +45,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-
-      - name: Debug Juice Shop
-        run: |
-          docker ps
-          curl -v $JUICE_URL || true
-
-      - name: Test DNS resolution
-        run: |
-          echo "Trying to resolve juice..."
-          getent hosts juice || echo "juice not found"
-          echo "Trying to resolve juice-shop..."
-          getent hosts juice-shop || echo "juice-shop not found"
-          getent hosts
-          getent hosts juice_service || echo "juice_service not found"
-
 
       - name: Wait for Juice Shop
         run: |
