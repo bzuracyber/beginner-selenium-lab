@@ -47,6 +47,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Test connectivity from Chrome network
+        run: |
+          docker run --rm --network=host curlimages/curl:8.5.0 curl -v http://localhost:3000 || true
+
       - name: Wait for Juice Shop
         run: |
           for i in {1..30}; do
