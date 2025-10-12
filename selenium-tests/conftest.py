@@ -16,11 +16,13 @@ def driver():
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
 
+    options.set_capability("browserName", "chrome")
+
     driver = webdriver.Remote(
         command_executor=selenium_url,
-        options=options,
-        desired_capabilities=DesiredCapabilities.CHROME
+        options=options
     )
+     
     driver.base_url = base_url
     yield driver
     driver.quit()
