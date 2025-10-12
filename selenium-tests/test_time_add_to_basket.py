@@ -1,22 +1,25 @@
-import time
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 def test_add_product_to_basket(driver):
-    # Go to Juice Shop homepage
-    driver.get("http://localhost:3000/#/")
+    # Use the base_url from conftest.py (set via JUICE_URL env var)
+    driver.get(driver.base_url + "/#/")
 
-    # Wait briefly for products to load
-    time.sleep(2)
+    # Wait until the product grid is visible
+    WebDriverWait(driver, 20).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, "mat-grid-tile"))
+    )
 
-    # Click on the first "Add to Basket" button
-    add_buttons = driver.find_elements("css selector", "button[aria-label='Add to Basket']")
-    assert len(add_buttons) > 0, "No products found on homepage"
+    # Click the first "Add to Basket" button
+    add_buttons = driver.find_elements(By.CSS_SELECTOR, "button[aria-label='Add to Basket']")
+    assert add_buttons, "No 'Add to Basket' buttons found on the page"
     add_buttons[0].click()
 
-    # Open the basket
-    basket_button = driver.find_element("css selector", "button[aria-label='Show the shopping cart']")
-    basket_button.click()
+    # Wait for the basket counter to update
+    basket_counter = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, "span.fa-layers-counter"))
+    )
 
-    # Verify that the basket contains at least one item
-    time.sleep(1)
-    basket_items = driver.find_elements("css selector", "mat-row")
-    assert len(basket_items) > 0, "Basket should contain at least one product"
+    # Assert that the basket counter shows '1'
+    assert basket_counter.text.strip() == "1"
