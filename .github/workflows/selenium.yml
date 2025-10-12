@@ -31,7 +31,7 @@ jobs:
 
     env:
       SELENIUM_URL: http://localhost:4444/wd/hub
-      JUICE_URL: http://host.docker.internal:3000
+      JUICE_URL: http://localhost:3000
 
 
     steps:
