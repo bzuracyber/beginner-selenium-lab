@@ -1,21 +1,18 @@
 version: "3.8"
 
 services:
-  juice-shop:
+  juice:
     image: bkimminich/juice-shop:latest
-    container_name: juice-shop
     ports:
       - "3000:3000"
 
   selenium-hub:
     image: selenium/hub:4.25.0
-    container_name: selenium-hub
     ports:
       - "4442-4444:4442-4444"
 
   chrome:
     image: selenium/node-chrome:4.25.0
-    container_name: selenium-chrome
     shm_size: 2gb
     depends_on:
       - selenium-hub
