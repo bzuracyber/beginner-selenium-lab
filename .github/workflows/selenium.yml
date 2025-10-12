@@ -49,7 +49,7 @@ jobs:
       - name: Wait for Juice Shop
         run: |
           for i in {1..15}; do
-            if curl -s http://juice:3000 > /dev/null; then
+            if curl -s $JUICE_URL > /dev/null; then
               echo "Juice Shop is up!"
               exit 0
             fi
