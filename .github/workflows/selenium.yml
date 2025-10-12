@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      juice:
+      juice_service:
         image: bkimminich/juice-shop:latest
         ports:
           - 3000:3000
@@ -30,7 +30,7 @@ jobs:
 
     env:
       SELENIUM_URL: http://selenium-hub:4444/wd/hub
-      JUICE_URL: http://juice:3000
+      JUICE_URL: http://juice_service:3000
 
     steps:
       - name: Checkout repo
@@ -57,6 +57,8 @@ jobs:
           getent hosts juice || echo "juice not found"
           echo "Trying to resolve juice-shop..."
           getent hosts juice-shop || echo "juice-shop not found"
+          getent hosts
+          getent hosts juice_service || echo "juice_service not found"
 
 
       - name: Wait for Juice Shop
