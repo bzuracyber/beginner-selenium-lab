@@ -30,7 +30,7 @@ jobs:
 
     env:
       SELENIUM_URL: http://selenium-hub:4444/wd/hub
-      JUICE_URL: http://localhost:3000
+      JUICE_URL: http://juice-shop:3000
 
     steps:
       - name: Checkout repo
@@ -49,7 +49,7 @@ jobs:
       - name: Debug Juice Shop
         run: |
           docker ps
-          curl -v http://juice:3000 || true
+          curl -v $JUICE_URL || true
 
       - name: Wait for Juice Shop
         run: |
