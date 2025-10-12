@@ -51,6 +51,14 @@ jobs:
           docker ps
           curl -v $JUICE_URL || true
 
+      - name: Test DNS resolution
+        run: |
+          echo "Trying to resolve juice..."
+          getent hosts juice || echo "juice not found"
+          echo "Trying to resolve juice-shop..."
+          getent hosts juice-shop || echo "juice-shop not found"
+
+
       - name: Wait for Juice Shop
         run: |
           for i in {1..30}; do
