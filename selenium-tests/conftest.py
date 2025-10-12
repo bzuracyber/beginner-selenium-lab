@@ -18,11 +18,18 @@ def driver():
 
     options.set_capability("browserName", "chrome")
 
-    driver = webdriver.Remote(
-        command_executor=selenium_url,
-        options=options
-    )
-     
+@pytest.fixture(scope="session")
+def driver():
+    base_url = os.getenv("JUICE_URL", "http://localhost:3000")
+    if os.getenv("SELENIUM_URL"):
+        options = webdriver.ChromeOptions()
+        options.set_capability("browserName", "chrome")
+        driver = webdriver.Remote(
+            command_executor=os.getenv("SELENIUM_URL"),
+            options=options
+        )
+    else:
+        driver = webdriver.Chrome()
     driver.base_url = base_url
     yield driver
     driver.quit()
