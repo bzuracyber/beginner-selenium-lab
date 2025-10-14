@@ -17,6 +17,37 @@ The lab uses **Docker** and **Selenium Grid** to provide a scalable, isolated te
 - Structured for easy extension into CI/CD later.
 
 ---
+
+## 🖥️ Prerequisites & Installation
+
+### 1. Clone the repo 
+```bash
+  git clone https://github.com/bzuracyber/beginner-selenium-lab.git
+  cd selenium-lab
+```
+
+### 2. Start Selenium Grid + app 
+```bash
+  docker-compose up -d
+```
+### 3. Install Python Dependencies
+- Use the provided `requirements.txt` file to install required packages such as:
+  - `selenium`
+  - `pytest`
+  - `pytest-html` (optional for reporting)
+    
+```bash
+  pip install -r requirements.txt
+```
+
+### 4. Run Tests
+
+```bash
+  pytest -v --tb=short
+```
+
+---
+
 ## ⚙️ Configuration
 - **App URL**: Default is `http://localhost:<port>` where Juice Shop is running.
 - **Browser selection**: Configurable via environment variable or fixture (e.g., Chrome vs. Firefox).
