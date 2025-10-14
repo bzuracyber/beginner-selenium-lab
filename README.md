@@ -63,7 +63,7 @@ The lab uses **Docker** and **Selenium Grid** to provide a scalable, isolated te
 ✅ All tests completed successfully!
 
 <p align="center">
-  <img src="images/evidence-selenium.png" alt="Example Selenium Test Evidence" width="600"/>
+  <img src="images/evidence-selenium.png" alt="Example Selenium Test Evidence" width="800"/>
 </p>
 
 ---
