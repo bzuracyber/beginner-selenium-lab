@@ -60,6 +60,12 @@ The lab uses **Docker** and **Selenium Grid** to provide a scalable, isolated te
 - tests/test_login.py::test_valid_login PASSED
 - tests/test_navigation.py::test_homepage_links PASSED
   
+✅ All tests completed successfully!
+
+<p align="center">
+  <img src="images/evidence-selenium.png" alt="Example Selenium Test Evidence" width="600"/>
+</p>
+
 ---
 
 ## 📚 Learning Goals
